@@ -1,9 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Tripulante
  */
 public class Tripulante {
+
+    public final static double NOTA_MAXIMA = 5.0;
+
     /**
      * Atributos
      */
@@ -15,7 +20,29 @@ public class Tripulante {
     private float numeroIdentificacion;
     private String email;
 
+    private ArrayList<Curso> cursos;
+
+    public Tripulante() {
+        super();
+    }
+
+    public Tripulante(String pnombre, int pid, double pnota1, double pnota2, double pnota3, float pnumeroIdentificacion, String pemail) {
+        super();
+        this.nombre =  pnombre;
+        this.id = pid;
+        this.nota1 = pnota1;
+        this.nota2 = pnota2;
+        this.nota3 = pnota3;
+        this.numeroIdentificacion = pnumeroIdentificacion;
+        this.email = pemail;
+        cursos = new ArrayList<>();
+    }
     /** Getters */
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -125,24 +152,19 @@ public class Tripulante {
     }
     
     public double getLowNote(){
-        if (nota1<=nota2 && nota1<=nota3) {
+        if (nota1 <= nota2 && nota1 <= nota3) {
             return nota1;
-        } else if (nota2<=nota3){
+        } else if(nota2 <= nota3){
             return nota2;
         }else{
             return nota3;
         }
     }
 
-    public boolean checkIfPass() {
-        
-        if (getAverage() >= 3){
+    public boolean checkIfPass(){
+        if(getAverage() <= 3){
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
-
-
 }
